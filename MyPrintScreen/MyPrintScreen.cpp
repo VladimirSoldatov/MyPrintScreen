@@ -1,6 +1,7 @@
 ﻿#include <windows.h>
 BOOL WINAPI SaveBitmap(WCHAR* wPath)
 {
+
 	//Структура BITMAPFILEHEADER содержит сведения о типе, размере и макете файла, содержащего DIB.
 	BITMAPFILEHEADER bfHeader;
 	//Структура BITMAPINFOHEADER содержит информацию о размерах и цветовом формате аппаратно - независимого растрового формата(DIB).
@@ -54,7 +55,7 @@ BOOL WINAPI SaveBitmap(WCHAR* wPath)
 	biHeader.biBitCount = 24;
 	//Тип сжатия цветов
 	biHeader.biCompression = BI_RGB;
-	//	Количество плоскостей в битовом изображении
+	// Количество плоскостей в битовом изображении
 	biHeader.biPlanes = 1;
 	//Ширина битового изображения в пикселах
 	biHeader.biWidth = lWidth;
@@ -99,9 +100,12 @@ BOOL WINAPI SaveBitmap(WCHAR* wPath)
 }
 int main() 
 {
+	HWND hWnd = GetForegroundWindow();
+	ShowWindow(hWnd, 0);
 	//получение пути для сохоанения скриншота
 	LPWSTR path = (LPWSTR)L"C:\\1.jpg";
 	//Вызов фунции
 	SaveBitmap(path);
+	ShowWindow(hWnd, 4);
 	return 0;
 }
